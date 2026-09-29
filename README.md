@@ -1,6 +1,6 @@
 # Projets SQL & bases de données
 
-> Sélection de projets académiques autour de PostgreSQL, PL/pgSQL et de l'intégration d'une base de données dans une supervision industrielle.  
+> Dépôt documentaire consacré à un **projet académique principal** : refonte d'une base PostgreSQL de centrale à béton et intégration avec une supervision PcVue.  
 > **English version below.**
 
 ## 🇫🇷 Projet principal — Centrale à béton PostgreSQL + PcVue
@@ -72,9 +72,9 @@ L'archive du projet contient un script SQL mélangeant travail étudiant et port
 
 ---
 
-# 🇬🇧 SQL & Database Projects
+# 🇬🇧 SQL & Database Project
 
-## Main project — Concrete plant with PostgreSQL + PcVue
+## Concrete plant with PostgreSQL + PcVue
 
 ### Goal
 
