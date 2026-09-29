@@ -34,7 +34,13 @@ Le projet met en œuvre :
 
 ### Intégration supervision
 
-Le projet ne s'arrêtait pas à PostgreSQL : les données étaient exploitées depuis **PcVue**, avec notamment des grilles dynamiques et des composants d'interface pour consulter et manipuler les recettes/productions.
+Le projet ne s'arrêtait pas à PostgreSQL. Dans **PcVue**, les scripts utilisent `Sql_Command` pour ouvrir/fermer la connexion, exécuter les requêtes et lire les buffers de résultat.
+
+Les grilles clients et productions sont construites dynamiquement à partir du nombre de lignes/champs et des noms de colonnes retournés par PostgreSQL (`BUFFERLINECOUNT`, `BUFFERFIELDCOUNT`, `BUFFERFIELDNAME`). Une ComboBox client est également rafraîchie depuis les données récupérées.
+
+Le bouton **Lancer Prod** construit une insertion, l'exécute de manière événementielle puis envoie la recette vers l'automate. Les essais du rapport vérifient que la production apparaît à la fois dans PcVue et dans PostgreSQL.
+
+La communication a aussi été observée avec **Wireshark** : handshake TCP en trois étapes et vérification des requêtes/réponses entre la supervision et la base.
 
 Cette partie a permis de travailler sur le chemin complet :
 
@@ -55,6 +61,10 @@ Utilisateur / supervision PcVue
 ### Compétences
 
 **PostgreSQL · SQL · PL/pgSQL · modélisation relationnelle · vues · triggers · fonctions · contraintes · PcVue**
+
+### Point d'architecture
+
+Le modèle initial référençait clients et recettes sous forme trop peu contrainte. Le travail de refonte introduit des clés étrangères et expose à l'application des **vues dédiées** plutôt qu'un accès direct inutile aux tables. Des triggers portent ensuite certaines règles métier côté base.
 
 ### À propos du code
 
@@ -88,7 +98,7 @@ The project includes:
 
 ### Industrial integration
 
-The database was connected to a **PcVue** supervision layer used to display and manipulate production/recipe information.
+The database was connected to **PcVue** through event-driven scripts using `Sql_Command`. Client and production grids are dynamically sized from query metadata, and production requests can be inserted from the supervision interface. Network exchanges were also inspected with Wireshark.
 
 **Stack:** PostgreSQL · SQL · PL/pgSQL · PcVue · relational modeling · views · triggers · functions
 
