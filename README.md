@@ -1,6 +1,6 @@
 # Projets SQL & bases de données
 
-> Dépôt documentaire consacré à un **projet académique principal** : refonte d'une base PostgreSQL de centrale à béton et intégration avec une supervision PcVue.  
+> Projet académique : refonte d'une base PostgreSQL de centrale à béton et intégration avec une supervision PcVue.
 > **English version below.**
 
 ## 🇫🇷 Projet principal — Centrale à béton PostgreSQL + PcVue
@@ -32,6 +32,10 @@ Le projet met en œuvre :
 - validation de la somme des proportions d'une recette ;
 - insertion d'une production à travers une vue.
 
+Une édition publiable et exécutable des sources se trouve dans [`sql/`](sql/).
+Elle utilise des noms cohérents en anglais et uniquement des données de
+démonstration fictives. Les scripts s'exécutent dans l'ordre numérique.
+
 ### Intégration supervision
 
 Le projet ne s'arrêtait pas à PostgreSQL. Dans **PcVue**, les scripts utilisent `Sql_Command` pour ouvrir/fermer la connexion, exécuter les requêtes et lire les buffers de résultat.
@@ -58,6 +62,18 @@ Utilisateur / supervision PcVue
  recettes · clients · productions
 ```
 
+## Provenance et nettoyage
+
+Le fichier de travail archivé mélangeait les ajouts du binôme, des fonctions
+fournies pour le cours, des marqueurs `À COMPLÉTER` et des coordonnées réelles.
+Il reste conservé sans modification dans l'archive privée, mais n'est pas publié
+tel quel. Les fichiers de [`sql/`](sql/) constituent une réécriture propre du
+comportement vérifié : schéma, contraintes, vues et triggers.
+
+L'export PcVue complet contient aussi une configuration de poste et des
+éléments fournis avec l'environnement pédagogique ; il n'est donc pas ajouté
+brut au dépôt.
+
 ### Compétences
 
 **PostgreSQL · SQL · PL/pgSQL · modélisation relationnelle · vues · triggers · fonctions · contraintes · PcVue**
@@ -68,7 +84,7 @@ Le modèle initial référençait clients et recettes sous forme trop peu contra
 
 ### À propos du code
 
-L'archive du projet contient un script SQL mélangeant travail étudiant et portions de squelette pédagogique fournies pour le TP. Afin de ne pas republier du contenu enseignant comme s'il s'agissait de mon propre code, ce dépôt documente pour l'instant le projet et les éléments réalisés. Une version nettoyée peut être ajoutée en ne conservant que les parties dont l'origine est clairement attribuable.
+L'archive du projet contient un script SQL mélangeant travail étudiant et portions de squelette pédagogique fournies pour le TP. Le fichier brut n'est pas republié. Une **édition de publication réécrite et nettoyée** est disponible dans [`sql/`](sql/) avec des exemples entièrement fictifs.
 
 ---
 
@@ -96,6 +112,9 @@ The project includes:
 - recipe-composition validation;
 - inserts performed through a view.
 
+The runnable publication edition is available in [`sql/`](sql/). Run the files
+in numerical order; the final demo-data script is optional.
+
 ### Industrial integration
 
 The database was connected to **PcVue** through event-driven scripts using `Sql_Command`. Client and production grids are dynamically sized from query metadata, and production requests can be inserted from the supervision interface. Network exchanges were also inspected with Wireshark.
@@ -104,4 +123,7 @@ The database was connected to **PcVue** through event-driven scripts using `Sql_
 
 ### Source note
 
-The archived SQL file combines student implementation with portions of an instructor-provided lab skeleton. To avoid presenting third-party teaching material as original work, the repository currently focuses on verified project documentation rather than republishing the complete raw file.
+The archived SQL file combines student implementation, an instructor-provided
+lab skeleton, unfinished placeholders and real contact data. The raw file remains
+unchanged in the private archive. The public `sql/` directory is a clean rewrite
+of the verified schema, views and trigger behaviour using synthetic examples.
